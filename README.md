@@ -1,6 +1,6 @@
 HI THERE 👋!
 
-I'm Renato Garcia, better know as <@Chemuelon>.
+I'm Renato Garcia, better know as @Chemuelon.
 
 I'm a enthusiastic about the amazing world of programming.
 
