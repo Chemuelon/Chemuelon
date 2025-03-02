@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo.PNG">
+    <title>CHEMUELON</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .intro-screen h1 {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-family: 'Bangers', cursive;
+        }
+
+        .start-button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+            font-family: 'Bangers', cursive;
+        }
+
+        .start-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
+        }
+
+        .main-content {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content-container {
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 70vh;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            display: none;
+        }
+
+        .logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .conquer-text {
+            color: white;
+            font-size: 5rem;
+            text-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 0.2rem;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+
+        .conquer-text.visible {
+            opacity: 1;
+            transform: scale(1);
+            display: block;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-screen" id="introScreen">
+        <h1>COMING SOON</h1>
+        <button class="start-button" id="startButton">START</button>
+    </div>
+
+    <div class="main-content">
+        <div class="content-container">
+            <img src="logo.PNG" alt="Project Logo" class="logo" id="projectLogo">
+            <div class="conquer-text" id="conquerText">TIME TO CONQUER THE WORLD</div>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const introScreen = document.getElementById('introScreen');
+            const startButton = document.getElementById('startButton');
+            const projectLogo = document.getElementById('projectLogo');
+            const conquerText = document.getElementById('conquerText');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+
+            // Set initial volume
+            backgroundMusic.volume = 0.7;
+
+            // Start button click event
+            startButton.addEventListener('click', function() {
+                introScreen.classList.add('hidden');
+
+                // Play background music
+                backgroundMusic.play().catch(error => {
+                    console.log('Autoplay prevented:', error);
+                });
+
+                // Start the alternating animation
+                startAlternatingContent();
+            });
+
+            function startAlternatingContent() {
+                // Show logo first
+                projectLogo.classList.add('visible');
+                
+                // Set up alternating interval
+                setInterval(() => {
+                    if (projectLogo.classList.contains('visible')) {
+                        projectLogo.classList.remove('visible');
+                        setTimeout(() => {
+                            conquerText.classList.add('visible');
+                        }, 100);
+                    } else {
+                        conquerText.classList.remove('visible');
+                        setTimeout(() => {
+                            projectLogo.classList.add('visible');
+                        }, 100);
+                    }
+                }, 4000); // Switch every 4 seconds
+            }
+        });
+    </script>
+</body>
+</html>
