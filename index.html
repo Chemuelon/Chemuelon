@@ -109,7 +109,7 @@
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 3rem 3rem 6rem;
+      padding: 3rem 3rem 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
@@ -304,7 +304,7 @@
     .section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 6rem 3rem;
+      padding: 3rem 3rem;
     }
 
     .section-header {
@@ -690,6 +690,167 @@
       font-size: 0.9rem;
     }
 
+    /* Core Values — enhanced card */
+.core-values-card {
+  position: relative;
+  margin: 28px auto;
+  max-width: 1100px;
+  border-radius: 14px;
+  overflow: visible;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(249,249,250,0.98) 100%);
+  box-shadow: 0 18px 40px rgba(15,34,52,0.06), 0 4px 10px rgba(11,22,36,0.04);
+  border: 1px solid rgba(42,183,169,0.12);
+  padding: 28px 28px;
+}
+
+/* vertical accent strip */
+.core-values-card .cv-accent-strip {
+  position: absolute;
+  left: -10px;
+  top: 14px;
+  bottom: 14px;
+  width: 8px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(42,183,169,1) 0%, rgba(255,107,107,0.95) 100%);
+  box-shadow: 0 6px 18px rgba(42,183,169,0.08);
+  transform: translateX(-2px);
+  z-index: 2;
+}
+
+/* inner content */
+.core-values-card .cv-inner {
+  position: relative;
+  z-index: 3;
+}
+
+/* header */
+.core-values-card .cv-header {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.core-values-card .cv-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(42,183,169,0.08), rgba(255,107,107,0.04));
+  border: 1px solid rgba(42,183,169,0.06);
+  box-shadow: 0 6px 18px rgba(11,22,36,0.03);
+}
+
+/* title and lead */
+.core-values-card .cv-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.85rem;
+  margin: 0 0 6px 0;
+  color: #0f2940; /* deep navy */
+  letter-spacing: -0.6px;
+}
+
+.core-values-card .cv-lead {
+  margin: 0;
+  color: #5c6b76; /* slate text */
+  font-size: 0.98rem;
+  max-width: 90ch;
+  line-height: 1.45;
+  opacity: 0.95;
+}
+
+/* list */
+.core-values-card .cv-list {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+/* each item turned into a clean row with a subtle dividing line */
+.core-values-card .cv-list li {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(248,249,250,0.0));
+  transition: transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms ease, background 280ms ease;
+  border: 1px solid rgba(15,34,52,0.03);
+}
+
+/* emphasize label */
+.core-values-card .cv-list li strong {
+  display: inline-block;
+  color: #112233; /* nearly black deep navy */
+  font-weight: 700;
+  font-size: 0.98rem;
+  background: linear-gradient(90deg, rgba(42,183,169,0.08), rgba(255,107,107,0.04));
+  padding: 8px 10px;
+  border-radius: 8px;
+  width: max-content;
+}
+
+/* description */
+.core-values-card .cv-list li span {
+  color: #495861;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: block;
+  padding-top: 2px;
+}
+
+/* subtle micro-interaction on hover (desktop only) */
+.core-values-card .cv-list li:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 0 18px 40px rgba(11,22,36,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.99));
+}
+
+/* separators using gap + soft divider shadow */
+.core-values-card .cv-list li + li {
+  margin-top: 4px;
+}
+
+/* responsive adjustments */
+@media (max-width: 880px) {
+  .core-values-card {
+    margin: 20px 18px;
+    padding: 22px;
+  }
+  .core-values-card .cv-list li {
+    grid-template-columns: 1fr;
+  }
+  .core-values-card .cv-list li strong {
+    margin-bottom: 8px;
+  }
+}
+
+/* tasteful entrance reveal for the card (play once per page load) */
+@keyframes cvReveal {
+  from { opacity: 0; transform: translateY(12px) scale(.997); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+}
+.core-values-card { animation: cvReveal 640ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* Respect user reduce-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .core-values-card,
+  .core-values-card .cv-list li,
+  .core-values-card .cv-list li:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
+
     .action-item h4 {
       font-size: 1.15rem;
       margin: 0;
@@ -930,7 +1091,7 @@
     .divider {
       height: 1px;
       background: var(--soft-gray);
-      margin: 4rem 0;
+      margin: 2rem 0;
     }
 
     /* Responsive */
@@ -1293,38 +1454,6 @@
           </div>
         </div>
       </div>
-
-      <div class="portfolio-card fade-in" data-artifact="cv">
-        <div class="portfolio-image">📄</div>
-        <div class="portfolio-content">
-          <h3 class="portfolio-title">Professional Resume</h3>
-          <p class="portfolio-description">
-            <strong>Context:</strong> Comprehensive CV showcasing education, experience, and skills.<br>
-            <strong>Claim:</strong> Multilingual professional with diverse international experience.<br>
-            <strong>Evidence:</strong> Full resume with detailed accomplishments and references to peer-reviewed project metrics.
-          </p>
-          <div class="portfolio-tags">
-            <span class="tag">Resume</span>
-            <span class="tag">Credentials</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-in" data-artifact="spi">
-        <div class="portfolio-image">🧠</div>
-        <div class="portfolio-content">
-          <h3 class="portfolio-title">Persona Analysis</h3>
-          <p class="portfolio-description">
-            <strong>Context:</strong> Professional persona evolution informed by a Self-Perception Inventory (SPI) and 360° feedback.<br>
-            <strong>Claim:</strong> Self-aware leader committed to continuous growth and improving communication clarity.<br>
-            <strong>Evidence:</strong> SPI results show an Expressive behavioral style and strong relational focus; peer evaluations highlight high-quality work and team contributions.
-          </p>
-          <div class="portfolio-tags">
-            <span class="tag">Self-Awareness</span>
-            <span class="tag">Growth</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1339,22 +1468,57 @@
     </div>
 
     <!-- Core Values -->
-    <div class="evolution-section fade-in">
-      <div class="evolution-card">
-        <div class="evolution-icon">🎯</div>
-        <h3>Core Values Exploration</h3>
-        <p class="text-muted">
+<section id="core-values" class="core-values-card" aria-labelledby="cv-title">
+  <div class="cv-accent-strip" aria-hidden="true"></div>
+
+  <div class="cv-inner">
+    <div class="cv-header">
+      <div class="cv-icon" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="#2AB7A9" stroke-width="1.6" fill="rgba(42,183,169,0.06)"/>
+          <circle cx="12" cy="12" r="5" stroke="#FF6B6B" stroke-width="1.4" fill="transparent"/>
+          <path d="M16 8 L18 6" stroke="#2AB7A9" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div>
+        <h2 id="cv-title" class="cv-title">Core Values Exploration</h2>
+        <p class="cv-lead">
           Through deep self-reflection and the Self-Perception Inventory (SPI), I've identified my core professional values that drive decision-making and leadership style:
         </p>
-        <ul class="value-list">
-          <li><strong>Innovation:</strong> Constantly seeking creative solutions and new approaches to challenges</li>
-          <li><strong>Resilience:</strong> Bouncing back from setbacks stronger, as demonstrated through Chambeando's evolution</li>
-          <li><strong>Collaboration:</strong> Building and empowering teams to achieve collective success</li>
-          <li><strong>Impact:</strong> Focusing on work that creates meaningful change in communities</li>
-          <li><strong>Continuous Learning:</strong> Embracing growth through diverse experiences across three countries</li>
-        </ul>
       </div>
     </div>
+
+    <ul class="cv-list" role="list">
+      <li tabindex="0" data-quote="I love building things that haven’t existed before — experimentation is my north star.">
+        <strong>Innovation:</strong>
+        <span> Constantly seeking creative solutions and new approaches to challenges</span>
+        <div>
+            <span>HOLA</span>
+        </div>
+      </li>
+      <li tabindex="0" data-quote="Setbacks taught me to redesign faster and come back with stronger solutions.">
+        <strong>Resilience:</strong>
+        <span> Bouncing back from setbacks stronger, as demonstrated through Chambeando's evolution</span>
+      </li>
+      <li tabindex="0" data-quote="The best outcomes come when people feel trusted, heard, and empowered to act.">
+        <strong>Collaboration:</strong>
+        <span> Building and empowering teams to achieve collective success</span>
+      </li>
+      <li tabindex="0" data-quote="I measure success by the real-world change we create — impact is the guiding metric.">
+        <strong>Impact:</strong>
+        <span> Focusing on work that creates meaningful change in communities</span>
+      </li>
+      <li tabindex="0" data-quote="I seek varied experiences and treat each as a classroom — growth is intentional.">
+        <strong>Continuous Learning:</strong>
+        <span> Embracing growth through diverse experiences across three countries</span>
+      </li>
+    </ul>
+
+    <!-- Floating / inline quote box -->
+    <div id="cv-quote" class="cv-quote" role="status" aria-live="polite"></div>
+  </div>
+</section>
 
     <!-- Identity-Brand-Reputation -->
     <div class="evolution-grid fade-in">
@@ -1563,6 +1727,9 @@
         </p>
         <div class="quote-box">
           "The best version of my professional self emerges when I leverage my natural expressiveness while adding layers of strategic clarity and documentation."
+        </div>
+        <div>
+            <iframe width="893" height="581" src="https://www.youtube.com/embed/aQzaHQwmXe0" title="BCOM 314 - PP#3 Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
