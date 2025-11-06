@@ -1,17 +1,5 @@
 <!doctype html>
 <html lang="en">
-    <!-- Loader Overlay -->
-<div id="loaderOverlay" aria-hidden="false">
-  <div class="loader-inner">
-    <div id="loaderHash">#INNOVATION</div>
-    <div class="password-container" aria-hidden="false" role="status">
-      <div class="password-label" aria-hidden="true">Password:</div>
-      <div id="passwordText" class="password-text" aria-live="polite"></div>
-      <div class="cursor" aria-hidden="true"></div>
-    </div>
-    <div class="loader-sub">Typing to enter…</div>
-  </div>
-</div>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -933,9 +921,123 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* -----------------------------
+       Loader styles (full-screen)
+       ----------------------------- */
+    #loaderOverlay {
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal);
+      color: #fff;
+      z-index: 2500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      transition: opacity 0.6s ease, visibility 0.6s;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #loaderOverlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      text-align: center;
+      transform: translateY(-2%);
+      padding: 1.25rem 2rem;
+    }
+
+    #loaderHash {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: var(--sage);
+      letter-spacing: 4px;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+
+    .password-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: rgba(255,255,255,0.06);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-top: 0.25rem;
+      min-width: 320px;
+      justify-content: center;
+    }
+
+    .password-label {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+      display: none; /* visually hide but accessible if needed */
+    }
+
+    .password-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.15rem;
+      color: #fff;
+      min-height: 1.2rem;
+      white-space: nowrap;
+      letter-spacing: 1px;
+    }
+
+    .cursor {
+      width: 2px;
+      height: 1.25rem;
+      background: #fff;
+      margin-left: 6px;
+      border-radius: 1px;
+      animation: blink 1s steps(1) infinite;
+      transform-origin: center;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .loader-sub {
+      margin-top: 0.85rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+    }
+
+    #passwordText.typing { opacity: 0; transform: translateY(6px); transition: all 0.25s ease; }
+    #passwordText.visible { opacity: 1; transform: translateY(0); }
+
+    /* Make sure the site content doesn't scroll while loader active */
+    html.loader-locked, body.loader-locked {
+      overflow: hidden;
+      height: 100vh;
+    }
   </style>
 </head>
 <body>
+  <!-- Loader Overlay -->
+  <div id="loaderOverlay" role="dialog" aria-modal="true" aria-label="Loading — enter password to access site">
+    <div class="loader-inner">
+      <div id="loaderHash">#INNOVATION</div>
+      <div class="password-container" aria-hidden="false" role="status">
+        <div class="password-label" aria-hidden="true">Password:</div>
+        <div id="passwordText" class="password-text" aria-live="polite"></div>
+        <div class="cursor" aria-hidden="true"></div>
+      </div>
+      <div class="loader-sub">Typing to enter… (click or press Enter to skip)</div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header>
     <nav>
@@ -1570,6 +1672,90 @@
   </div>
 
   <script>
+    /* -----------------------------
+       Loader: typing "RESILIENCE"
+       ----------------------------- */
+    (function() {
+      const phrase = "RESILIENCE";
+      const textEl = document.getElementById('passwordText');
+      const loader = document.getElementById('loaderOverlay');
+      let idx = 0;
+      let typingTimeout = null;
+
+      // Lock scrolling while loader active
+      document.documentElement.classList.add('loader-locked');
+      document.body.classList.add('loader-locked');
+
+      // Start typing when DOM content fully loaded
+      window.addEventListener('load', () => {
+        // small initial delay so fonts/styles render
+        setTimeout(() => {
+          typeNextChar();
+        }, 600);
+      });
+
+      function typeNextChar() {
+        if (!textEl || !loader) return;
+        textEl.classList.add('typing');
+        setTimeout(() => textEl.classList.remove('typing'), 50);
+
+        if (idx < phrase.length) {
+          textEl.textContent += phrase[idx++];
+          // pace typing slightly variably for realism
+          const delay = 90 + Math.floor(Math.random() * 80);
+          typingTimeout = setTimeout(typeNextChar, delay);
+        } else {
+          // finished typing -> small pause then reveal
+          textEl.classList.add('visible');
+          setTimeout(() => revealSite(), 700);
+        }
+      }
+
+      function revealSite() {
+        if (!loader) return;
+        loader.classList.add('hidden');
+        // unlock scrolling after fade
+        setTimeout(() => {
+          document.documentElement.classList.remove('loader-locked');
+          document.body.classList.remove('loader-locked');
+          loader.setAttribute('aria-hidden', 'true');
+          // Move focus to main content for accessibility
+          const firstHeading = document.querySelector('h1');
+          if (firstHeading) firstHeading.setAttribute('tabindex', '-1');
+          if (firstHeading) firstHeading.focus({ preventScroll: true });
+        }, 650);
+      }
+
+      // Allow click to skip typing and reveal site instantly
+      loader.addEventListener('click', () => {
+        if (idx < phrase.length) {
+          clearTimeout(typingTimeout);
+          textEl.textContent = phrase;
+          idx = phrase.length;
+          textEl.classList.add('visible');
+          setTimeout(() => revealSite(), 220);
+        }
+      });
+
+      // Allow keyboard (Enter or Space) to skip typing
+      window.addEventListener('keydown', (e) => {
+        if (!loader || loader.classList.contains('hidden')) return;
+        if (e.key === 'Enter' || e.key === ' ' ) {
+          e.preventDefault();
+          if (idx < phrase.length) {
+            clearTimeout(typingTimeout);
+            textEl.textContent = phrase;
+            idx = phrase.length;
+            textEl.classList.add('visible');
+            setTimeout(() => revealSite(), 220);
+          }
+        }
+      });
+    })();
+
+    /* -----------------------------
+       Main site interactions & animations
+       ----------------------------- */
     // Scroll animations
     const observerOptions = {
       threshold: 0.1,
@@ -1623,9 +1809,11 @@
       });
     });
 
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
+    if (closeModal) {
+      closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    }
 
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
