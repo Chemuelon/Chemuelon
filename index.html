@@ -155,7 +155,7 @@
     .pulse-dot {
       width: 8px;
       height: 8px;
-      background: var(--deep-sage);
+      background: var(--sage);
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
     }
@@ -1051,6 +1051,101 @@
       padding: 2rem;
     }
 
+    /* Persona Overview new layout styles */
+.persona-grid {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+/* Left stacked cards */
+.persona-left .persona-card {
+  background: white;
+  border: 1px solid var(--soft-gray);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 20px rgba(11,22,36,0.04);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+}
+.persona-left .persona-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,22,36,0.06); }
+
+.persona-card-head { display:flex; gap:1rem; align-items:flex-start; }
+.persona-number {
+  width:44px; height:44px; border-radius:8px; display:inline-grid; place-items:center;
+  background: linear-gradient(135deg, rgba(42,183,169,1), rgba(255,107,107,0.9));
+  color:white; font-weight:700; font-size:1.1rem;
+  box-shadow: 0 6px 18px rgba(42,183,169,0.08);
+}
+.persona-card-title { margin:0; font-size:1.15rem; color:var(--charcoal); }
+.persona-card .text-muted.small { margin:0.25rem 0 0.6rem 0; color:var(--text-secondary); font-size:0.95rem; }
+
+/* badges and insight */
+.persona-badge-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin:0.65rem 0; }
+.badge { background:var(--off-white); border:1px solid var(--soft-gray); padding:0.35rem 0.6rem; border-radius:8px; color:var(--sage); font-weight:600; font-size:0.85rem; }
+
+.persona-insight { margin-top:0.6rem; background:linear-gradient(180deg, rgba(248,249,250,0.9), rgba(255,255,255,0.95)); padding:0.8rem; border-radius:8px; border-left:3px solid var(--sage); color:var(--text-secondary); font-size:0.95rem; }
+
+/* Right column */
+.persona-right { display:flex; flex-direction:column; gap:1rem; }
+
+/* Growth card */
+.growth-card { background:white; border:1px solid var(--soft-gray); border-radius:10px; padding:1rem 1.1rem; box-shadow: 0 8px 20px rgba(11,22,36,0.04); }
+.growth-head { display:flex; gap:0.9rem; align-items:center; margin-bottom:0.6rem; }
+.growth-icon { font-size:2rem; margin-right:0.25rem; }
+.growth-title { margin:0; font-size:1.15rem; color:var(--charcoal); }
+
+/* compact metric styles (re-uses some existing classes but tuned) */
+.growth-metrics-compact .metric-item.compact { margin-bottom:0.9rem; }
+.metric-label { font-weight:700; color:var(--charcoal); margin-bottom:0.45rem; font-size:0.95rem; }
+.metric-bar { width:100%; height:10px; background:var(--off-white); border-radius:6px; border:1px solid var(--soft-gray); overflow:hidden; }
+.metric-fill { height:100%; border-radius:6px; transition:width 1s ease-out; }
+.metric-value { font-size:0.85rem; color:var(--text-secondary); margin-top:0.45rem; }
+
+/* mini meter for reputation */
+.mini-meter { display:flex; flex-direction:column; gap:0.4rem; width:60%; }
+.mini-meter-label { font-weight:700; color:var(--charcoal); font-size:0.9rem; }
+.mini-meter-bar { height:8px; background:var(--off-white); border-radius:6px; border:1px solid var(--soft-gray); overflow:hidden; }
+.mini-meter-fill { height:100%; background:var(--sage); border-radius:6px; width:0; transition: width 900ms cubic-bezier(.2,.9,.2,1); }
+.mini-meter-caption { font-size:0.82rem; color:var(--text-secondary); }
+
+/* mini metrics row */
+.mini-metrics { display:flex; gap:1rem; align-items:center; justify-content: flex-end; width:40%; }
+.mini-stat { display:flex; flex-direction:column; align-items:flex-end; gap:0.2rem; font-size:0.82rem; color:var(--text-secondary); }
+.mini-stat strong { color:var(--charcoal); font-size:0.92rem; }
+
+/* peer highlights toggle */
+.toggle-peers { margin-top:0.75rem; background:transparent; border:1px dashed var(--soft-gray); padding:0.5rem 0.8rem; border-radius:6px; cursor:pointer; font-weight:600; color:var(--charcoal); }
+.peer-block { margin-top:0.75rem; padding:0.8rem; border-radius:8px; background: linear-gradient(180deg, rgba(248,249,250,0.95), rgba(255,255,255,0.98)); border:1px solid var(--soft-gray); }
+
+/* Culture tile collection */
+.culture-card-collection { background: white; border:1px solid var(--soft-gray); border-radius:10px; padding:1rem; box-shadow: 0 8px 20px rgba(11,22,36,0.04); }
+.culture-head { display:flex; gap:0.7rem; align-items:center; margin-bottom:0.6rem; }
+.culture-icon { font-size:1.9rem; }
+
+.culture-grid-compact { display:grid; grid-template-columns: repeat(2, 1fr); gap:0.9rem; }
+.culture-tile { padding:0.9rem; border-radius:8px; background:var(--off-white); border:1px solid rgba(15,34,52,0.03); transition: all .25s; cursor:pointer; }
+.culture-tile:focus { outline: 3px solid rgba(42,183,169,0.12); outline-offset:4px; }
+.culture-tile h4 { margin:0 0 0.35rem 0; color:var(--charcoal); font-size:1rem; }
+.tile-summary { margin:0 0 0.4rem 0; color:var(--text-secondary); font-size:0.92rem; }
+.tile-expand { font-size:0.92rem; color:var(--text-secondary); margin-top:0.5rem; display:none; }
+
+/* expanded state */
+.culture-tile.expanded { background:white; transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,22,36,0.06); border-color:var(--sage); }
+.culture-tile.expanded .tile-expand { display:block; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .persona-grid { grid-template-columns: 1fr; }
+  .culture-grid-compact { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .culture-grid-compact { grid-template-columns: 1fr; }
+  .mini-metrics { display:none; }
+  .mini-meter { width:100%; }
+}
+
     .modal-content {
       background: var(--warm-white);
       border: 1px solid var(--soft-gray);
@@ -1253,6 +1348,59 @@
       overflow: hidden;
       height: 100vh;
     }
+
+    /* Work environment + image row (two-column, responsive) */
+.work-env-row {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 1rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+/* left list styling */
+.work-env-list { background: transparent; color:var(--text-secondary); font-size:0.95rem; }
+
+/* right image panel */
+.work-env-image {
+  background: linear-gradient(180deg, rgba(248,249,250,0.95), rgba(255,255,255,0.98));
+  border-radius: 10px;
+  padding: 0.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid var(--soft-gray);
+  box-shadow: 0 6px 18px rgba(11,22,36,0.03);
+  min-height: 116px;
+}
+
+/* ensure image fits nicely */
+.work-env-image img {
+  width:100%;
+  max-width: 220px;
+  height: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  display:block;
+}
+
+/* visually hide figcaption but keep for screen readers */
+.sr-only {
+  position: absolute !important;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Small screens: stack and center image */
+@media (max-width: 900px) {
+  .work-env-row { grid-template-columns: 1fr; gap: 0.75rem; }
+  .work-env-image { min-height: 160px; padding: 0.75rem; }
+  .work-env-image img { max-width: 100%; max-height: 220px; }
+}
     
   </style>
 </head>
@@ -1277,7 +1425,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#journey">Journey</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#evolution">Evolution</a></li>
+        <li><a href="#evolution">Growth</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -1292,11 +1440,11 @@
       </div>
       
       <h1>
-        Building Ventures with <span class="hero-accent">Purpose and Precision</span>
+        Turning Abstract Ideas <span class="hero-accent">Into Impact</span>
       </h1>
       
       <p class="hero-description">
-        Entrepreneur and strategist transforming ideas into impactful businesses through innovative thinking, resilient execution, and collaborative leadership. My professional persona is shaped by a blend of expressive leadership and pragmatic decision-making — informed by 360° peer feedback and a Self-Perception Inventory (SPI).
+        Hola, soy Renato! I’m an entrepreneurial business student with real-world experience founding startups, working in finance, and leading teams. I love thinking outside the box and turning my curiosity into reality through hard work and resilience. I’m motivated to create measurable impact in communities around the world.
       </p>
       
       <div class="cta-group">
@@ -1325,8 +1473,8 @@
   <section id="journey" class="section">
     <div class="section-header fade-in">
       <div class="section-label">Experience</div>
-      <h2 class="section-title">Professional Journey</h2>
-      <p class="section-subtitle">A track record of building, leading, and innovating across continents and industries</p>
+      <h2 class="section-title">My Professional Journey</h2>
+      <p class="section-subtitle">My personal adventures of building, leading, and innovating across continents and industries</p>
     </div>
 
     <div class="timeline">
@@ -1334,20 +1482,19 @@
         <div class="timeline-content">
           <div class="timeline-date">2025 — Present</div>
           <h3 class="timeline-title">Founder</h3>
-          <div class="timeline-company">Chemuelon | Spain</div>
+          <div class="timeline-company">Chemuelon | Spain | Perú | USA </div>
           <p class="timeline-description">
-            Building a diversified business portfolio driving innovation, sustainability, and community development. Currently identifying strategic opportunities to expand reach and influence across multiple markets while applying insights from team feedback to improve process documentation and cross-cultural collaboration.
-          </p>
+            Building a diversified investment portfolio driving innovation, sustainability, and community development. Chemuelon aims to drive economic growth, empower local communities, and inspire positive change across industries by fostering innovation, collaboration, and social responsibility.
         </div>
       </div>
 
       <div class="timeline-item fade-in">
         <div class="timeline-content">
           <div class="timeline-date">2025</div>
-          <h3 class="timeline-title">Finance Intern</h3>
+          <h3 class="timeline-title">Operations and Finance Leader</h3>
           <div class="timeline-company">TokenCrowd | Madrid, Spain</div>
           <p class="timeline-description">
-            Conducted market research and competitor analysis in real estate investments. Collaborated on budget creation and resource allocation while enhancing analytical and communication skills in a dynamic fintech environment — producing materials used for investment discussions and strategy alignment.
+            I conducted market research, competitor analysis, read and created white papers and financials to spot real estate investment opportunities. In a fast moving  fintech environment I improved my problem solving and communication skills while helping build budgets and allocate resources.
           </p>
         </div>
       </div>
@@ -1369,12 +1516,11 @@
           <h3 class="timeline-title">Co-Founder</h3>
           <div class="timeline-company">Chambeando | Lima, Perú</div>
           <p class="timeline-description">
-            Led a team of 20+ members to achieve 300% business growth. Supported by MIT Sandbox and Georgia Tech, this web platform revolutionized job opportunities for workers through innovative tech solutions and collaborative leadership. Lessons from this scale-up inform my emphasis on psychological safety, clear accountability, and rapid iteration.
+            Led a team of 20+ members to achieve 300%+ business growth all over LATAM. Supported by MIT Sandbox and Georgia Tech, Chambeando revolutionized job opportunities for "gig" workers through innovation and tech solutions. Exit of $1.8M achieved in 2023.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <div class="divider"></div>
 
@@ -1382,75 +1528,93 @@
   <section id="portfolio" class="section">
     <div class="section-header fade-in">
       <div class="section-label">Work</div>
-      <h2 class="section-title">Featured Portfolio</h2>
-      <p class="section-subtitle">Context • Claims • Evidence of professional capabilities</p>
+      <h2 class="section-title">My Featured Portfolio</h2>
+      <p class="section-subtitle">Putting My Skills and Ideas to Work</p>
     </div>
 
     <div class="portfolio-grid">
       <div class="portfolio-card fade-in" data-artifact="chemuelon">
-        <div class="portfolio-image">🚀</div>
+        <div class="portfolio-image">
+            <img src="Chemuelon.jpeg" alt="" width="600px" height="200px">
+        </div>
         <div class="portfolio-content">
-          <h3 class="portfolio-title">Chemuelon Case Study</h3>
+          <h3 class="portfolio-title">Chemuelon</h3>
           <p class="portfolio-description">
-            <strong>Context:</strong> Building a diversified business portfolio from scratch.<br>
-            <strong>Claim:</strong> Demonstrates strategic thinking, vision, and entrepreneurial execution.<br>
-            <strong>Evidence:</strong> Business framework and growth strategy documentation, plus verified growth metrics and team feedback on execution quality.
+            <strong>Mission:</strong> Building a diversified investment portfolio from scratch.<br>
+            <strong>Goal:</strong> Drive economic growth, empower local communities through strategic thinking, vision, and entrepreneurial execution.<br>
           </p>
           <div class="portfolio-tags">
             <span class="tag">Strategy</span>
             <span class="tag">Leadership</span>
             <span class="tag">Innovation</span>
+            <span class="tag">Finance</span>
           </div>
         </div>
       </div>
 
       <div class="portfolio-card fade-in" data-artifact="chambeando">
-        <div class="portfolio-image">💼</div>
+        <div class="portfolio-image">
+            <img src="Chambeando.png" alt="" width="600px" height="200px">
+        </div>
         <div class="portfolio-content">
-          <h3 class="portfolio-title">Chambeando Growth</h3>
+          <h3 class="portfolio-title">Chambeando</h3>
           <p class="portfolio-description">
-            <strong>Context:</strong> Co-founded platform to improve job access for workers in Peru.<br>
-            <strong>Claim:</strong> Achieved 300% growth through team leadership and strategic innovation.<br>
-            <strong>Evidence:</strong> Supported by MIT Sandbox & Georgia Tech; managed 20+ team members; peer feedback highlights punctuality, preparation, and strong team cohesion.
+            <strong>Mission:</strong> Co-founded platform to improve job access for workers in Peru and LATAM.<br>
+            <strong>Results:</strong> Achieved 300%+ growth through team leadership and strategic innovation plus an exit of $1.8M in 2023.<br>
+            <strong>Support & Mentors:</strong> Supported by MIT Sandbox & Georgia Tech and YC alumni mentors.
           </p>
           <div class="portfolio-tags">
             <span class="tag">Entrepreneurship</span>
             <span class="tag">Team Building</span>
-            <span class="tag">Impact</span>
+            <span class="tag">Resilience</span>
+            <span class="tag">Adaptability</span>
+            <span class="tag">Communication</span>
+            <span class="tag">Leadership</span>
+            <span class="tag">Idea-Generator</span>
           </div>
         </div>
       </div>
 
       <div class="portfolio-card fade-in" data-artifact="tokencrowd">
-        <div class="portfolio-image">📊</div>
+        <div class="portfolio-image">
+            <img src="tokencrowdio_cover.jpeg" alt="" width="600px" height="200px">
+        </div>
         <div class="portfolio-content">
-          <h3 class="portfolio-title">TokenCrowd Analysis</h3>
+          <h3 class="portfolio-title">TokenCrowd</h3>
           <p class="portfolio-description">
-            <strong>Context:</strong> Finance internship analyzing real estate investment opportunities.<br>
-            <strong>Claim:</strong> Strong analytical skills in market research and financial documentation.<br>
-            <strong>Evidence:</strong> Competitor analysis reports, budget frameworks and financial models used to evaluate deals.
+            <strong>Role:</strong> Finance and Operation Leader analyzing real estate investment opportunities.<br>
+            <strong>Growth:</strong> Strong improvement in analytical skills in market research and financial documentation.<br>
+            <strong>Main Tasks:</strong> Competitor analysis reports, budget frameworks and financial analysis used to evaluate deals and investments.
           </p>
           <div class="portfolio-tags">
             <span class="tag">Finance</span>
             <span class="tag">Research</span>
             <span class="tag">Analysis</span>
+            <span class="tag">Operations</span>
+            <span class="tag">Risk-Taker</span>
+            <span class="tag">Hard-working</span>
           </div>
         </div>
       </div>
 
       <div class="portfolio-card fade-in" data-artifact="tutoring">
-        <div class="portfolio-image">📚</div>
+        <div class="portfolio-image">
+            <img src="logo-thinktank_0.png" alt="" width="460px" height="150px">
+        </div>
         <div class="portfolio-content">
-          <h3 class="portfolio-title">Teaching Frameworks</h3>
+          <h3 class="portfolio-title">Think Tank Tutoring</h3>
           <p class="portfolio-description">
-            <strong>Context:</strong> Academic tutoring at University of Arizona.<br>
-            <strong>Claim:</strong> Ability to communicate complex concepts and adapt to diverse learning styles.<br>
+            <strong>Purpose:</strong> Impact students' academic and professional journey.<br>
+            <strong>How:</strong> Providing academic support to students, improving their understanding and performance plus building confidence.<br>
             <strong>Evidence:</strong> Personalized learning plans, improved student outcomes, and repeat tutoring engagements.
           </p>
           <div class="portfolio-tags">
             <span class="tag">Communication</span>
             <span class="tag">Teaching</span>
             <span class="tag">Mentorship</span>
+            <span class="tag">Trust</span>
+            <span class="tag">Empathy</span>
+            <span class="tag">Growth-Oriented</span>
           </div>
         </div>
       </div>
@@ -1463,8 +1627,8 @@
   <section id="evolution" class="section">
     <div class="section-header fade-in">
       <div class="section-label">Growth</div>
-      <h2 class="section-title">Professional Persona Evolution</h2>
-      <p class="section-subtitle">Identity • Brand • Reputation: My journey of self-discovery and professional development</p>
+      <h2 class="section-title">My Professional Persona Evolution</h2>
+      <p class="section-subtitle">My journey of self-discovery and professional development</p>
     </div>
 
     <!-- Core Values -->
@@ -1483,36 +1647,61 @@
 
       <div>
         <h2 id="cv-title" class="cv-title">Core Values Exploration</h2>
-        <p class="cv-lead">
-          Through deep self-reflection and the Self-Perception Inventory (SPI), I've identified my core professional values that drive decision-making and leadership style:
-        </p>
       </div>
     </div>
 
     <ul class="cv-list" role="list">
       <li tabindex="0" data-quote="I love building things that haven’t existed before — experimentation is my north star.">
         <strong>Innovation:</strong>
-        <span> Constantly seeking creative solutions and new approaches to challenges</span>
-        <div>
-            <span>HOLA</span>
-        </div>
+        <span> I'm passionate about constantly seeking creative solutions and new approaches to challenges</span>
       </li>
+      <div>
+            <span></span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">"Renato is always thinking outside of the box and comes from a business background." - Team Member</span>
+        </div>
       <li tabindex="0" data-quote="Setbacks taught me to redesign faster and come back with stronger solutions.">
         <strong>Resilience:</strong>
-        <span> Bouncing back from setbacks stronger, as demonstrated through Chambeando's evolution</span>
+        <span> Bouncing back from setbacks stronger, as demonstrated throughout my projects journey.</span>
       </li>
+      <div>
+            <span></span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">"No matter what challenge Renato faces, there is nothing that makes him doubt that the goal is unattainable." - Rick Chavie</span>
+        </div>
       <li tabindex="0" data-quote="The best outcomes come when people feel trusted, heard, and empowered to act.">
         <strong>Collaboration:</strong>
         <span> Building and empowering teams to achieve collective success</span>
       </li>
+      <div>
+            <span></span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">"A fantastic person to be around and work with. Not afraid to help those around him. One of the hardest working people and I love working with him." - Network</span>
+        </div>
       <li tabindex="0" data-quote="I measure success by the real-world change we create — impact is the guiding metric.">
         <strong>Impact:</strong>
-        <span> Focusing on work that creates meaningful change in communities</span>
+        <span> Focusing on work that creates meaningful impact on people</span>
       </li>
+      <div>
+            <span></span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">"He always helps you and gives you advice when you have doubts, offers possible solutions, and always works to help those he’s closest to." - Network</span>
+        </div>
       <li tabindex="0" data-quote="I seek varied experiences and treat each as a classroom — growth is intentional.">
         <strong>Continuous Learning:</strong>
-        <span> Embracing growth through diverse experiences across three countries</span>
+        <span> Always pursuing a growth-mindset through diverse experiences across projects, industries, cultures, and people.</span>
       </li>
+      <div>
+            <span></span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">"He’s a very daring person who keeps trying and is never satisfied — always wanting to explore new areas" - Network</span>
+        </div>
+      
     </ul>
 
     <!-- Floating / inline quote box -->
@@ -1520,215 +1709,205 @@
   </div>
 </section>
 
-    <!-- Identity-Brand-Reputation -->
-    <div class="evolution-grid fade-in">
-      <div class="evolution-card">
-        <div class="evolution-number">1</div>
-        <h3>Identity (Who I Am)</h3>
-        <p class="text-muted">
-          I see myself as a <strong>resilient innovator</strong> who thrives on transforming ideas into reality. My identity is rooted in entrepreneurial spirit, multilingual communication, and a passion for building systems that empower others. I value adaptability and view challenges as opportunities for growth.
-        </p>
-        <div class="insight-box">
-          <strong>Key Insight:</strong> My diverse background (Italy, Peru, USA) has shaped my ability to navigate different cultures and perspectives, making me a bridge-builder in multicultural teams.
+    <!-- Persona Overview — new layout (replace Identity/Brand/Reputation + Growth Mindset + Team Culture blocks) -->
+<section id="persona-overview" class="evolution-section fade-in" aria-labelledby="persona-title">
+  <div class="section-header" style="margin-bottom: 1.5rem;">
+    <h2 id="persona-title" class="section-title" style="margin:0;">Identity • Brand • Reputation</h2>
+    <p class="section-subtitle" style="margin-top:0.5rem;">An interactive summary of who I am, how I show up, and what peers say.</p>
+  </div>
+
+  <div class="persona-grid">
+    <!-- Left: Identity / Brand / Reputation stacked cards -->
+    <div class="persona-left">
+      <div class="persona-card persona-card--identity" aria-labelledby="id-title">
+        <div class="persona-card-head">
+          <div>
+            <div class="persona-number">1</div>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <h3 id="id-title" class="persona-card-title">Who I Am</h3>
+            <p class="text-muted small">I'm Renato and I see myself as a <strong>resilient expressive innovator entrepreneur</strong> who loves transforming ideas into reality. My identity is rooted in entrepreneurial spirit, exploration and adventures, and a passion for building projects that empower others.</p>
+          </div>
+        </div>
+
+        <div class="persona-card-body">
+          <div class="persona-badge-row">
+            <span class="badge">Resilient</span>
+            <span class="badge">Innovator</span>
+            <span class="badge">Multilingual</span>
+            <span class="badge">Entrepreneur</span>
+            <span class="badge">Expressive</span>
+          </div>
+
+          <div class="persona-insight">
+            <strong>Fun Fact:</strong> My diverse background has shaped my ability to navigate different cultures and perspectives, making me a key player in multicultural teams.
+          </div>
         </div>
       </div>
 
-      <div class="evolution-card">
-        <div class="evolution-number">2</div>
-        <h3>Brand (How I Present)</h3>
-        <p class="text-muted">
-          My professional brand emphasizes <strong>strategic execution</strong> and <strong>people-first leadership</strong>. I position myself as someone who combines analytical thinking with creative problem-solving. Through my ventures, I consistently communicate reliability, innovation, and a commitment to sustainable growth.
-        </p>
-        <div class="insight-box">
-          <strong>Key Insight:</strong> I actively cultivate a brand of authenticity—being transparent about both successes and learning experiences builds trust with stakeholders.
+      <div class="persona-card persona-card--brand" aria-labelledby="brand-title">
+        <div class="persona-card-head">
+          <div><div class="persona-number">2</div></div>
+          <div style="flex:1;min-width:0;">
+            <h3 id="brand-title" class="persona-card-title">How I Present Myself</h3>
+            <p class="text-muted small">My professional identity emphasizes <strong>strategic out of the box execution</strong> and <strong>people‑focused leadership</strong>. I position myself as someone who combines analytical thinking with creative problem-solving.</p>
+          </div>
+        </div>
+
+        <div class="persona-card-body">
+          <div class="persona-badge-row">
+            <span class="badge">Strategic</span>
+            <span class="badge">Reliable</span>
+            <span class="badge">Authentic</span>
+          </div>
+
+          <div class="persona-insight">
+            <strong>Fun Fact:</strong> Authenticity is a key component of my professional persona. It is the only way to build trust and long-term relationships.
+          </div>
         </div>
       </div>
 
-      <div class="evolution-card">
-        <div class="evolution-number">3</div>
-        <h3>Reputation (How Others See Me)</h3>
-        <p class="text-muted">
-          Based on 360° feedback and the SPI, teammates consistently describe me as <strong>expressive, proactive, and relational</strong>. My SPI behavioral summary identifies an <strong>Expressive</strong> style (SPI: 3.67 / 4.0) and the platform's aggregate behavioral analysis labels my average style as <strong>Expressive</strong> (Composite Proactivity: 4.50; Composite Reactivity: 3.25).
-        </p>
-        <div class="insight-box">
-          <strong>Key Insight:</strong> There is strong alignment between my identity and reputation — peers praise my energy and relational strengths but recommend clearer decision documentation and concise explanations for better team alignment.
+      <div class="persona-card persona-card--reputation" aria-labelledby="rep-title">
+        <div class="persona-card-head">
+          <div><div class="persona-number">3</div></div>
+          <div style="flex:1;min-width:0;">
+            <h3 id="rep-title" class="persona-card-title">How Others See Me</h3>
+            <p class="text-muted small">My network and teammates consistently describe me as <strong>expressive, proactive, creative, and a social worker.</strong> Colleagues consistently describe me as trusting, well-informed, well-rounded, and a problem-solver, highlighting my intelligence and strong work ethic.</p>
+          </div>
+        </div>
+
+        <div class="persona-card-body">
+            <div class="persona-badge-row">
+                <span class="badge">Expressive</span>
+                <span class="badge">Proactive</span>
+                <span class="badge">Creative</span>
+                <span class="badge">Social Worker</span>
+          </div>
+          <div class="persona-insight">
+            <strong>Fun Fact:</strong> The whiteboard is my main tool to communicate complex ideas clearly and effectively, making collaboration easier.
+          </div>
         </div>
       </div>
+      <div class="persona-card">
+        <img src="keywords.png" alt="" width="600px">
+        </div>
     </div>
 
-    <!-- Growth Trajectory -->
-    <div class="evolution-section fade-in">
-      <div class="evolution-card">
-        <div class="evolution-icon">📈</div>
-        <h3>Growth Mindset & Behavioral Insights</h3>
-        <p class="text-muted">
-          Throughout this semester, I've tracked behavioral patterns using the SPI and peer (PRS) responses. Key findings and actionable metrics are summarized below.
-        </p>
-        
-        <div class="growth-metrics">
-          <div class="metric-item">
-            <div class="metric-label">Expressive Communication</div>
-            <div class="metric-bar">
-              <div class="metric-fill" style="width: 92%; background: var(--sage);"></div>
-            </div>
-            <div class="metric-value">SPI Score: 3.67 / 4.0 — strong relational presence and idea generation</div>
-          </div>
-          
-          <div class="metric-item">
-            <div class="metric-label">Relationship Building</div>
-            <div class="metric-bar">
-              <div class="metric-fill" style="width: 85%; background: var(--sage);"></div>
-            </div>
-            <div class="metric-value">High priority area — peers describe me as supportive and energizing</div>
-          </div>
-          
-          <div class="metric-item">
-            <div class="metric-label">Strategic Execution</div>
-            <div class="metric-bar">
-              <div class="metric-fill" style="width: 75%; background: var(--sage);"></div>
-            </div>
-            <div class="metric-value">Strength — peers consistently rate quality of work very high</div>
-          </div>
-          
-          <div class="metric-item">
-            <div class="metric-label">Decision Documentation</div>
-            <div class="metric-bar">
-              <div class="metric-fill" style="width: 60%; background: var(--accent-gold);"></div>
-            </div>
-            <div class="metric-value">Growth area — feedback suggests clearer, written decision logs</div>
+
+    <!-- Right: Growth Mindset + Team Culture (stacked vertically) -->
+    <div class="persona-right">
+      <!-- Growth Mindset card -->
+      <div class="growth-card">
+        <div class="growth-head">
+          <div class="growth-icon">📈</div>
+          <div>
+            <h3 class="growth-title">Growth Mindset & Behavioral Insights</h3>
+            <p class="text-muted small">Behavioral patterns from SPI and peer responses</p>
           </div>
         </div>
 
-        <div class="growth-insights">
-          <h4>What I've Learned:</h4>
-          <ul class="value-list">
-            <li><strong>Leverage Networks:</strong> My relationships are my superpower—I need to invest more time in fostering strategic partnerships to scale ideas</li>
-            <li><strong>Document the Journey:</strong> While I excel at execution, improving documentation will help teams understand the "why" behind decisions</li>
-            <li><strong>Balance Speed with Clarity:</strong> My rapid decision-making is an asset, but taking time to communicate rationale improves team buy-in</li>
-            <li><strong>Embrace Feedback:</strong> Creating structured feedback loops has accelerated my growth more than individual reflection alone</li>
-          </ul>
+        <div class="growth-body">
+          <div class="growth-metrics-compact">
+            <!-- keep original metric text but improved visual -->
+            <div class="metric-item compact">
+              <div class="metric-label">Expressive Communication</div>
+              <div class="metric-bar"><div class="metric-fill" style="width:92%; background:var(--sage);"></div></div>
+              <div class="metric-value">Strong relational presence and idea generation</div>
+            </div>
 
-          <div style="margin-top:1rem;">
-            <strong>Peer quantitative highlights:</strong>
-            <ul style="margin-top:0.5rem; color: var(--text-secondary);">
-              <li>Meeting preparedness & timeliness: team average ~3.8 / 4.0</li>
-              <li>Active listening & engagement: team average ~3.9 / 4.0</li>
-              <li>Quality of work: 97.6% (peer-rated)</li>
-              <li>Amount of effort: 94.4% (peer-rated)</li>
-              <li>Positive team environment contribution: 97.4% (peer-rated)</li>
+            <div class="metric-item compact">
+              <div class="metric-label">Relationship Building</div>
+              <div class="metric-bar"><div class="metric-fill" style="width:85%; background:var(--sage);"></div></div>
+              <div class="metric-value">High priority area — my peers describe me as supportive and empathetic</div>
+            </div>
+
+            <div class="metric-item compact">
+              <div class="metric-label">Strategic Execution</div>
+              <div class="metric-bar"><div class="metric-fill" style="width:87%; background:var(--sage);"></div></div>
+              <div class="metric-value">Strengthz — My peers consistently rate quality of work very high</div>
+            </div>
+
+            <div class="metric-item compact">
+              <div class="metric-label">Time Management</div>
+              <div class="metric-bar"><div class="metric-fill" style="width:75%; background:var(--accent-gold);"></div></div>
+              <div class="metric-value">Growth area — peers' feedback suggests that there is room for improvement</div>
+            </div>
+          </div>
+
+          <div class="growth-actions">
+            <h4 style="margin:0 0 0.5rem 0;">What I've Learned</h4>
+            <ul class="value-list" style="margin:0;">
+              <li><strong>Growth Networks:</strong> Invest more time in fostering strategic partnerships to scale ideas.</li>
+              <li><strong>Build a Schedule:</strong> Improve time management to boost team productivity.</li>
+              <li><strong>Balance Speed with Clarity:</strong> Take time to communicate while building a strategic plan.</li>
+              <li><strong>Embrace Feedback:</strong> Always be open to learn, to listen, and to grow.</li>
             </ul>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Team Culture Findings -->
-    <div class="evolution-section fade-in">
-      <div class="evolution-card">
-        <div class="evolution-icon">🤝</div>
-        <h3>Team Culture & Collaboration</h3>
-        <p class="text-muted">
-          Leading 20+ team members at Chambeando taught me invaluable lessons about team dynamics. Through collaborative projects this semester, I've refined my understanding of what makes teams thrive:
-        </p>
-        
-        <div class="culture-grid">
-          <div class="culture-card">
-            <strong>Psychological Safety</strong>
-            <p>Creating environments where team members feel safe to take risks and voice concerns is non-negotiable for innovation.</p>
-          </div>
-          <div class="culture-card">
-            <strong>Clear Accountability</strong>
-            <p>Defining roles and responsibilities upfront prevents confusion and empowers autonomous decision-making.</p>
-          </div>
-          <div class="culture-card">
-            <strong>Celebrate Wins</strong>
-            <p>Recognizing both big achievements and small progress builds momentum and team morale.</p>
-          </div>
-          <div class="culture-card">
-            <strong>Iterate Together</strong>
-            <p>The best solutions emerge from collaborative iteration, not individual genius.</p>
-          </div>
-        </div>
+          <div class="peer-highlights">
+            <button class="toggle-peers" aria-expanded="false" aria-controls="peer-block">Show peer highlights ▾</button>
+            <div id="peer-block" class="peer-block" hidden>
+              <strong>Quantitative highlights:</strong>
+              <ul style="margin-top:0.5rem; margin-left:15px; color:var(--text-secondary);">
+                <li>Meeting preparedness & timeliness: 3.82 / 4.0</li>
+                <li>Active listening & engagement: 3.85 / 4.0</li>
+                <li>Quality of work: 97.6%</li>
+                <li>Amount of effort: 94.4%</li>
+                <li>Positive team environment contribution: 97.4%</li>
+              </ul>
 
-        <div style="margin-top:1.5rem;">
-          <strong>Work environment preferences (calculated):</strong>
-          <ul style="margin-top:0.5rem; color: var(--text-secondary);">
-            <li>Relationships: 3.67 (prefer building trust through non-work time)</li>
-            <li>Chronemics (schedules & deadlines): 3.00</li>
-            <li>Debate (theory vs evidence): 2.67</li>
-            <li>Decision-Making (group vs top-down): 2.33</li>
-            <li>Context (direct vs subtle communication): 0.33 (preference for low-context, explicit messages)</li>
-            <li>Hierarchy preference: 0.67 (leans toward flatter structures)</li>
-            <li>Feedback (directness vs sensitivity): 1.33</li>
-            <li>Conflict: 0.67</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Action Plan -->
-    <div class="evolution-section fade-in">
-      <div class="evolution-card action-plan">
-        <div class="evolution-icon">🚀</div>
-        <h3>Moving Forward: Action-Oriented Growth Plan</h3>
-        <p class="text-muted">
-          Based on my persona analysis, here's how I'm cultivating my professional presence going forward:
-        </p>
-        
-        <div class="action-items">
-          <div class="action-item">
-            <div class="action-header">
-              <span class="action-number">01</span>
-              <h4>Strengthen Decision Documentation</h4>
+              <div style="margin-top:0.75rem; color:var(--text-secondary);">
+                <strong>Selected qualitative feedback (summary):</strong>
+                <p style="margin:0.4rem 0 0 0;">Peers highlight punctuality, preparation, supportive communication, and a strong contribution to group morale — with a recommendation for clearer written decision records.</p>
+              </div>
             </div>
-            <p><strong>Action:</strong> Implement weekly decision logs and strategy memos for all major projects</p>
-            <p><strong>Measure:</strong> Team feedback on clarity and alignment within 3 months</p>
-          </div>
-
-          <div class="action-item">
-            <div class="action-header">
-              <span class="action-number">02</span>
-              <h4>Expand Professional Network</h4>
-            </div>
-            <p><strong>Action:</strong> Attend 2 industry events per month and schedule quarterly coffee chats with mentors</p>
-            <p><strong>Measure:</strong> Build 20+ meaningful connections by end of year</p>
-          </div>
-
-          <div class="action-item">
-            <div class="action-header">
-              <span class="action-number">03</span>
-              <h4>Develop Specialized Expertise</h4>
-            </div>
-            <p><strong>Action:</strong> Deep dive into sustainable business models and impact investing</p>
-            <p><strong>Measure:</strong> Complete certification and apply learnings to Chemuelon strategy</p>
-          </div>
-
-          <div class="action-item">
-            <div class="action-header">
-              <span class="action-number">04</span>
-              <h4>Enhance Communication Clarity</h4>
-            </div>
-            <p><strong>Action:</strong> Practice structured communication frameworks (SCQA, Pyramid Principle) and share concise summaries after major meetings</p>
-            <p><strong>Measure:</strong> Reduced clarification questions in team meetings and improved feedback on documentation</p>
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Team Culture card -->
+       <div class="culture-card-collection">
+  <div class="culture-head">
+    <div class="culture-icon">🤝</div>
+    <div>
+      <h3 class="growth-title" style="margin:0;">Team Culture & Collaboration</h3>
+      <p class="text-muted small">Core Principles based on previously leading 20+ team members and founder experience.</p>
+    </div>
+  </div>
+
+  <div class="culture-grid-compact" role="list">
+    <!-- tiles (unchanged) -->
+    <article class="culture-tile" tabindex="0" role="button" aria-expanded="false" data-ex="Creating environments where team members feel safe to take risks and voice concerns is non-negotiable for innovation.">
+      <h4>Psychological Safety</h4>
+      <p class="tile-summary">My main goal inside a team is to create a safe space to take risks & explore new ideas.</p>
+    </article>
+
+    <article class="culture-tile" tabindex="0" role="button" aria-expanded="false" data-ex="Defining roles and responsibilities upfront prevents confusion and empowers autonomous decision-making.">
+      <h4>Clear Accountability</h4>
+      <p class="tile-summary">Clear roles, tasks, and deadlines to prevent confusion, and empowers autonomy.</p>
+    </article>
+    <article class="culture-tile" tabindex="0" role="button" aria-expanded="false" data-ex="Recognizing both big achievements and small progress builds momentum and team morale.">
+      <h4>Celebrate Wins</h4>
+      <p class="tile-summary">No matter how big or small is the win, always celebrate it.</p>
+    </article>
+
+    <article class="culture-tile" tabindex="0" role="button" aria-expanded="false" data-ex="The best solutions emerge from collaborative iteration, not individual genius.">
+      <h4>Together is better than Solo</h4>
+      <p class="tile-summary">Collaborative iteration &gt; solo. The best solutions emerge from collaborative iteration, not individual performance</p>
+    </article>
+  </div>
+</div>
+
+</section>
+<section>
     <!-- Closing Reflection -->
     <div class="evolution-section fade-in">
-      <div class="reflection-card">
-        <h3>Reflection: The Gap Between Identity and Reputation</h3>
-        <p class="text-muted">
-          The most valuable insight from this semester's persona work is recognizing that <strong>alignment between who I am and how I'm perceived is a continuous practice, not a destination</strong>. While my identity as an innovative, resilient entrepreneur largely matches my reputation as an expressive, proactive leader, the feedback loop has revealed crucial growth edges.
-        </p>
-        <p class="text-muted">
-          My strength in execution sometimes overshadows the need for clear communication of process. Moving forward, I'm committed to being as intentional about <strong>how I communicate</strong> as I am about <strong>what I achieve</strong>. This evolution will make me not just a better leader, but a more effective collaborator and team builder.
-        </p>
+      <div class="reflection-card" style="text-align: center;">
+        <h3>You want to learn a little bit more about me and my journey?</h3>
         <div class="quote-box">
-          "The best version of my professional self emerges when I leverage my natural expressiveness while adding layers of strategic clarity and documentation."
+          "The best version of my professional self emerges when I explore new ideas, execute strategic plans, and leverage my expressiveness. This journey of self-discovery has taught me that authenticity, resilience, and a growth mindset are key to unlocking my full potential."
         </div>
-        <div>
+        <div style="margin-top: 30px;">
             <iframe width="893" height="581" src="https://www.youtube.com/embed/aQzaHQwmXe0" title="BCOM 314 - PP#3 Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
@@ -1742,12 +1921,11 @@
     <div class="section-header fade-in">
       <div class="section-label">Capabilities</div>
       <h2 class="section-title">Core Skills</h2>
-      <p class="section-subtitle">Technical and soft skills honed through entrepreneurship and education</p>
+      <p class="section-subtitle">Technical and soft skills that I have developed through my professional journey.</p>
     </div>
 
     <div class="skills-grid">
       <div class="skill-category fade-in">
-        <div class="skill-icon">💼</div>
         <h3 class="skill-name">Business Strategy</h3>
         <ul class="skill-list">
           <li>Strategic Planning</li>
@@ -1759,10 +1937,9 @@
       </div>
 
       <div class="skill-category fade-in">
-        <div class="skill-icon">👥</div>
         <h3 class="skill-name">Leadership</h3>
         <ul class="skill-list">
-          <li>Team Building (20+ members)</li>
+          <li>Team Building</li>
           <li>Cross-Cultural Management</li>
           <li>Conflict Resolution</li>
           <li>Mentorship & Coaching</li>
@@ -1771,49 +1948,44 @@
       </div>
 
       <div class="skill-category fade-in">
-        <div class="skill-icon">🚀</div>
         <h3 class="skill-name">Entrepreneurship</h3>
         <ul class="skill-list">
-          <li>Venture Building</li>
           <li>Product Development</li>
           <li>Growth Strategy</li>
           <li>Pitch & Presentation</li>
           <li>Risk Management</li>
+          <li>Networking</li>
         </ul>
       </div>
-
       <div class="skill-category fade-in">
-        <div class="skill-icon">💻</div>
         <h3 class="skill-name">Technical</h3>
         <ul class="skill-list">
-          <li>Web Development Basics</li>
+          <li>Web Development</li>
           <li>Data Analysis</li>
-          <li>Financial Modeling</li>
-          <li>Project Management Tools</li>
+          <li>Database and Server Management</li>
           <li>Digital Marketing</li>
         </ul>
       </div>
 
       <div class="skill-category fade-in">
-        <div class="skill-icon">🌍</div>
         <h3 class="skill-name">Languages</h3>
         <ul class="skill-list">
-          <li>English (Native)</li>
-          <li>Spanish (Native)</li>
-          <li>Italian (Native)</li>
+          <li>English</li>
+          <li>Spanish</li>
+          <li>Italian</li>
           <li>Cross-Cultural Communication</li>
         </ul>
       </div>
 
       <div class="skill-category fade-in">
-        <div class="skill-icon">🎯</div>
         <h3 class="skill-name">Soft Skills</h3>
         <ul class="skill-list">
           <li>Problem Solving</li>
           <li>Adaptability</li>
           <li>Critical Thinking</li>
-          <li>Emotional Intelligence</li>
+          <li>Hard-working</li>
           <li>Time Management</li>
+          <li>Resilience</li>
         </ul>
       </div>
     </div>
@@ -1826,7 +1998,7 @@
     <div class="section-header fade-in">
       <div class="section-label">Connect</div>
       <h2 class="section-title">Let's Work Together</h2>
-      <p class="section-subtitle">Open to internships, collaborations, and innovative projects</p>
+      <p class="section-subtitle">Open to collaborations, new challenges, and innovative projects</p>
     </div>
 
     <div class="contact-grid">
@@ -1835,7 +2007,7 @@
           <div class="contact-icon">📧</div>
           <div>
             <strong>Email</strong>
-            <p class="text-muted">renatomgarcia@gmail.com</p>
+            <p class="text-muted">renatomgarciavilela@gmail.com</p>
           </div>
         </div>
 
@@ -1885,7 +2057,7 @@
   <!-- Footer -->
   <footer>
     <p><strong>© 2025 Renato Garcia</strong></p>
-    <p>Entrepreneur • Strategist • Bridge-Builder</p>
+    <p>Entrepreneur · Business Student · Innovation & Resilience</p>
   </footer>
 
   <!-- Modal -->
@@ -1901,7 +2073,7 @@
        Loader: typing "RESILIENCE"
        ----------------------------- */
     (function() {
-      const phrase = "RESILIENCE";
+      const phrase = "#RESILIENCE 😎";
       const textEl = document.getElementById('passwordText');
       const loader = document.getElementById('loaderOverlay');
       let idx = 0;
@@ -2008,43 +2180,6 @@
       });
     });
 
-    // Portfolio card interactions
-    const modal = document.getElementById('modal');
-    const modalBody = document.getElementById('modalBody');
-    const closeModal = document.getElementById('closeModal');
-
-    document.querySelectorAll('.portfolio-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const artifact = card.dataset.artifact;
-        let content = '';
-        
-        switch(artifact) {
-          case 'chemuelon':
-            content = '<h2 style="margin-bottom: 1rem; color: var(--charcoal);">Chemuelon - Business Portfolio</h2><p style="color: var(--text-secondary);">Detailed case study coming soon. This project showcases strategic business development and portfolio management.</p>';
-            break;
-          case 'cv':
-            content = '<embed src="Renato_Garcia_CV.pdf" type="application/pdf" width="100%" height="600px" />';
-            break;
-          default:
-            content = '<h2 style="margin-bottom: 1rem; color: var(--charcoal);">' + card.querySelector('.portfolio-title').textContent + '</h2><p style="color: var(--text-secondary);">Detailed documentation coming soon.</p>';
-        }
-        
-        modalBody.innerHTML = content;
-        modal.style.display = 'flex';
-      });
-    });
-
-    if (closeModal) {
-      closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-    }
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
 
     // Contact form
     function sendMail(e) {
@@ -2058,6 +2193,75 @@
       window.location.href = mailto;
       return false;
     }
+
+    /* Persona Overview interactivity (toggle peers + expandable culture tiles + animate mini-meter) */
+(function personaInteractivity(){
+  // Peer highlights toggle
+  const toggle = document.querySelector('.toggle-peers');
+  const peerBlock = document.getElementById('peer-block');
+  if (toggle && peerBlock) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      peerBlock.hidden = expanded;
+      toggle.textContent = expanded ? 'Show peer highlights ▾' : 'Hide peer highlights ▴';
+    });
+  }
+
+  // Culture tiles: click / keyboard toggles
+  const tiles = Array.from(document.querySelectorAll('.culture-tile'));
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const isExpanded = tile.classList.contains('expanded');
+      // collapse all, then toggle current
+      tiles.forEach(t => {
+        t.classList.remove('expanded');
+        t.setAttribute('aria-expanded', 'false');
+        const ex = t.querySelector('.tile-expand');
+        if (ex) ex.setAttribute('aria-hidden', 'true');
+      });
+      if (!isExpanded) {
+        tile.classList.add('expanded');
+        tile.setAttribute('aria-expanded', 'true');
+        const ex = tile.querySelector('.tile-expand');
+        if (ex) ex.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        tile.click();
+      }
+      if (e.key === 'Escape') {
+        tiles.forEach(t => {
+          t.classList.remove('expanded');
+          t.setAttribute('aria-expanded', 'false');
+          const ex = t.querySelector('.tile-expand');
+          if (ex) ex.setAttribute('aria-hidden', 'true');
+        });
+      }
+    });
+  });
+
+  // animate mini-meter fill on entrance
+  const miniFill = document.querySelector('.mini-meter-fill');
+  if (miniFill) {
+    // set width after small delay so transition animates
+    setTimeout(() => { miniFill.style.width = miniFill.getAttribute('data-width') || '92%'; }, 380);
+    // also support in case we didn't use data-width above
+    setTimeout(() => { if (!miniFill.style.width) miniFill.style.width = '92%'; }, 900);
+  }
+
+  // If there are multiple metric-fill bars in the right column, animate them
+  const metricFills = Array.from(document.querySelectorAll('.growth-metrics-compact .metric-fill'));
+  metricFills.forEach((bar) => {
+    const target = bar.style.width || bar.getAttribute('data-target') || '0%';
+    // start at 0
+    bar.style.width = '0%';
+    setTimeout(() => { bar.style.width = target; }, 420);
+  });
+})();
   </script>
 </body>
 </html>
