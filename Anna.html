@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Año Nuevo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffae3c 0%, #109d94 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .carta-container {
+            background: #fff;
+            max-width: 700px;
+            width: 100%;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+        }
+
+        .decoracion-top {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .decoracion-top span {
+            font-size: 40px;
+            margin: 0 10px;
+        }
+
+        .fecha {
+            text-align: right;
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .saludo {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .contenido {
+            color: #444;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .contenido p {
+            margin-bottom: 15px;
+        }
+
+        .despedida {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .despedida p {
+            color: #444;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .firma {
+            margin-top: 15px;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 28px;
+            color: #444;
+        }
+
+        .decoracion-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .carta-container {
+                padding: 40px 30px;
+            }
+
+            .saludo {
+                font-size: 20px;
+            }
+
+            .contenido {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carta-container">
+        <div class="fecha">January 1, 2026</div>
+
+        <div class="saludo">
+            Señorita Anna,
+        </div>
+
+        <div class="contenido">
+            <p>
+                Happy New Year! Officially, another year has ended, and that means both you and I are getting older. I couldn’t end the year without thanking those people with whom I have shared the best year of my life and who have had the courage and great kindness to help me create the Renato that everyone knows today. And surprisingly, one of those people has been you!
+            </p>
+            <p>
+                I couldn’t be happier that my nemesis in politics and economics is you. I must admit that many times opposing you (which is definitely one of my favorite pastimes) is challenging because your arguments are always backed by data that are hard to counter or impossible to misinterpret. But regardless of our political differences and even more so, economic ones (honestly, I hope they stop subsidizing the blessed university train before I graduate), I have to be extremely grateful for your time, your endless patience, but above all, for that empathy and big heart you have, even though you yell at me every time I open my mouth.
+            </p>
+            <p>
+                This last part of the year, you have been one of the people I have shared the most with, and in these months you have taught me a lot, and believe me, that is one of the hardest achievements to get, mainly because I already know everything. You have made me more open to new ideas and experiences, but above all, you have reminded me what it means to be perseverant and what it means to work until you can’t anymore. Through your nemesis (accounting), I have come to know one of the most resilient and fighting people I know, and as a tutor and as a person, let me tell you that I am proud of you and thank you for giving me the honor of accompanying you in that suffering.
+            </p>
+            <p>
+                For this new year, and the new semester that starts soon, I can only wish you the best. I want you to keep fighting for those dreams, defending those ideals that no one else has, and memorizing your flashcards until you dream about them. I hope this year is 100 times better than the last one, and never stop being such an enthusiastic person; maybe that is one of your best qualities. I’ll see you soon in Tucson to go get food and hit the bars (now that you’ve finally stopped being a freshman), and to finish watching those weird vampire movies (and the private communist meetings you have in favor of Palestine are still pending).
+            </p>
+        </div>
+
+        <div class="despedida">
+            <p>Con cariño y los mejores deseos para el nuevo año,</p>
+            <div class="firma">Renato Garcia</div>
+        </div>
+
+    </div>
+</body>
+</html>
